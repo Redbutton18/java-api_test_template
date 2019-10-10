@@ -10,7 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class AuthorizationService extends Wd3SetupApiService {
 
-    @Step("Send POST  request")
+    @Step("Send POST Register User  request")
     public AssertableResponse userRegistration(AuthorizationModel authorizationModel) {
         log.info("Authorization {}", authorizationModel);
         Response register =
@@ -18,6 +18,18 @@ public class AuthorizationService extends Wd3SetupApiService {
                         .body(authorizationModel)
                         .when()
                         .post("api/register")
+                        .then().extract().response();
+        return new AssertableResponse(register);
+    }
+
+    @Step("Send POST Login User request")
+    public AssertableResponse userLogin(AuthorizationModel authorizationModel) {
+        log.info("Authorization {}", authorizationModel);
+        Response register =
+                baseSetupHeaders()
+                        .body(authorizationModel)
+                        .when()
+                        .post("api/login")
                         .then().extract().response();
         return new AssertableResponse(register);
     }

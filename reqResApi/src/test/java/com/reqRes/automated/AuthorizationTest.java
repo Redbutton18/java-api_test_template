@@ -54,6 +54,38 @@ public class AuthorizationTest {
                         bodyField("error", containsString("Missing password")));
     }
 
+    @TmsLink(value = "")
+    @Test(description = "Login User Test")
+    public void testLoginUser() {
+        AuthorizationModel authorizationModel = new AuthorizationModel()
+                .setEmail(USER_EMAIL)
+                .setPassword(USER_PASSWORD);
 
+        authorizationService.userLogin(authorizationModel)
+                .shouldHave(statusCode(200),
+                        bodyField("token", is(not(empty()))));
+    }
+
+    @TmsLink(value = "")
+    @Test(description = "Login User Without Password Test")
+    public void testLoginUserWithoutPassword() {
+        AuthorizationModel authorizationModel = new AuthorizationModel()
+                .setEmail(USER_EMAIL);
+
+        authorizationService.userLogin(authorizationModel)
+                .shouldHave(statusCode(400),
+                        bodyField("error", containsString("Missing password")));
+    }
+
+    @TmsLink(value = "")
+    @Test(description = "Login User Without Email Test")
+    public void testLoginUserWithoutEmail() {
+        AuthorizationModel authorizationModel = new AuthorizationModel()
+                .setPassword(USER_PASSWORD);
+
+        authorizationService.userLogin(authorizationModel)
+                .shouldHave(statusCode(400),
+                        bodyField("error", containsString("Missing email or username")));
+    }
 
 }
