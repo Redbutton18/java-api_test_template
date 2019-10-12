@@ -1,4 +1,4 @@
-package com.reqRes.automated.api.models.UserModel;
+package com.reqRes.automated.api.models.userManagementModel;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -8,16 +8,13 @@ import lombok.Setter;
 import lombok.ToString;
 import lombok.experimental.Accessors;
 
-import static com.reqRes.automated.api.utilits.dataGenerator.UserDataGenerator.getFakerFirstName;
-import static com.reqRes.automated.api.utilits.dataGenerator.UserDataGenerator.getFakerJob;
-
 @NoArgsConstructor
 @Getter
 @Setter
 @ToString
 @Accessors(chain = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class Post_CreateNewUserModel {
+public class Put_UpdateUserDataResponseModel {
 
 	@JsonProperty("name")
 	private String name;
@@ -25,11 +22,6 @@ public class Post_CreateNewUserModel {
 	@JsonProperty("job")
 	private String job;
 
-	public Post_CreateNewUserModel randomize() {
-		this.name = getFakerFirstName();
-		this.job = getFakerJob();
-
-		return this;
-	}
+	@JsonProperty("updatedAt")
+	private String updatedAt;
 }
-
