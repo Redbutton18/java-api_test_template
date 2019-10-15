@@ -2,7 +2,6 @@ package com.reqRes.automated;
 
 import com.reqRes.automated.api.models.resourceDataModel.listResourceDataResponceModel.ListResourceDataResponseModel;
 import com.reqRes.automated.api.models.resourceDataModel.resourceDataResponseModel.ResourceDataResponseModel;
-import com.reqRes.automated.api.models.userDataModel.listUsersDataResponseModel.ListUserDataResponseModel;
 import com.reqRes.automated.api.service.api.resourceData_service.ResourceDataService;
 import io.qameta.allure.TmsLink;
 import org.testng.annotations.Test;
@@ -50,7 +49,11 @@ public class ResourceDataTest {
     @TmsLink(value = "")
     @Test(description = "Get non exist resource data Test")
     public void testGetNonExistResourceData() {
-        resourceDataService.getResourceData(35)
-                .shouldHave(statusCode(404));
+
+        String response = resourceDataService.getResourceData(35)
+                .shouldHave(statusCode(404))
+                .getResponseJsonBody();
+
+        assertEquals(response, "{}");
     }
 }

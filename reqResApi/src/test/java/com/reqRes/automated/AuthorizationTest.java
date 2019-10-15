@@ -11,8 +11,6 @@ import static com.reqRes.automated.api.conditions.Conditions.statusCode;
 import static com.reqRes.automated.api.properties.UserProp.USER_EMAIL;
 import static com.reqRes.automated.api.properties.UserProp.USER_PASSWORD;
 import static org.hamcrest.Matchers.*;
-import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertNotNull;
 
 public class AuthorizationTest {
 

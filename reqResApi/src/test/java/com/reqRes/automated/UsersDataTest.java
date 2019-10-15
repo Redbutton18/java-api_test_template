@@ -1,16 +1,14 @@
 package com.reqRes.automated;
 
+import com.reqRes.automated.api.AssertableResponse;
 import com.reqRes.automated.api.models.userDataModel.listUsersDataResponseModel.ListUserDataResponseModel;
-import com.reqRes.automated.api.models.userDataModel.listUsersDataResponseModel.DataItem;
 import com.reqRes.automated.api.models.userDataModel.userDataResponseModel.UserData;
 import com.reqRes.automated.api.service.api.userData_service.UserDataService;
 import io.qameta.allure.TmsLink;
+import io.restassured.response.Response;
 import org.testng.annotations.Test;
 
-import static com.reqRes.automated.api.conditions.Conditions.bodyField;
 import static com.reqRes.automated.api.conditions.Conditions.statusCode;
-import static org.hamcrest.Matchers.empty;
-import static org.hamcrest.core.Is.is;
 import static org.testng.Assert.assertEquals;
 
 public class UsersDataTest {
@@ -57,7 +55,12 @@ public class UsersDataTest {
     public void testGetNonExistUserData() {
         int userID = 33;
 
-        userDataService.getUserData(userID)
-                        .shouldHave(statusCode(404));
+        String resp =
+                userDataService.getUserData(userID)
+                        .shouldHave(statusCode(404))
+                        .getResponseJsonBody();
+
+        assertEquals(resp, "{}");
+
     }
 }
