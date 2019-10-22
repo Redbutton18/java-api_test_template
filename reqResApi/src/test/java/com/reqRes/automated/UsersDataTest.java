@@ -1,11 +1,9 @@
 package com.reqRes.automated;
 
-import com.reqRes.automated.api.AssertableResponse;
 import com.reqRes.automated.api.models.userDataModel.listUsersDataResponseModel.ListUserDataResponseModel;
 import com.reqRes.automated.api.models.userDataModel.userDataResponseModel.UserData;
 import com.reqRes.automated.api.service.api.userData_service.UserDataService;
 import io.qameta.allure.TmsLink;
-import io.restassured.response.Response;
 import org.testng.annotations.Test;
 
 import static com.reqRes.automated.api.conditions.Conditions.statusCode;
