@@ -1,6 +1,5 @@
 package com.reqRes.automated.api.models.userDataModel.listUsersDataResponseModel;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -19,18 +18,21 @@ import lombok.experimental.Accessors;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ListUserDataResponseModel {
 
-	@JsonProperty("per_page")
-	private int perPage;
+    @JsonProperty("per_page")
+    private Integer perPage;
 
-	@JsonProperty("total")
-	private int total;
+    @JsonProperty("total")
+    private Integer total;
 
-	@JsonProperty("data")
-	private List<DataItem> data = new ArrayList<>();
+    @JsonProperty("ad")
+    private Ad ad;
 
-	@JsonProperty("page")
-	private int page;
+    @JsonProperty("data")
+    private List<DataItem> data;
 
-	@JsonProperty("total_pages")
-	private int totalPages;
+    @JsonProperty("page")
+    private Integer page;
+
+    @JsonProperty("total_pages")
+    private Integer totalPages;
 }
