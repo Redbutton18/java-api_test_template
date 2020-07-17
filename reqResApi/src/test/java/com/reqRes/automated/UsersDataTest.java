@@ -15,6 +15,9 @@ public class UsersDataTest {
     int usersPerPage = 6;
     int totalNumberOfUsers = 12;
     int totalPages = 2;
+    String company = "StatusCode Weekly";
+    String companyUrl = "http://statuscode.org/";
+    String text = "A weekly newsletter focusing on software development, infrastructure, the server, performance, and the stack end of things.";
 
     @TmsLink(value = "")
     @Test(description = "Get users data list Test")
@@ -25,11 +28,14 @@ public class UsersDataTest {
                 .shouldHave(statusCode(200))
                 .responseAs(ListUserDataResponseModel.class);
 
-        assertEquals(pageNumber, listUserDataResponseModel.getPage());
-        assertEquals(usersPerPage, listUserDataResponseModel.getPerPage());
-        assertEquals(totalNumberOfUsers, listUserDataResponseModel.getTotal());
-        assertEquals(totalPages, listUserDataResponseModel.getTotalPages());
+        assertEquals(pageNumber, listUserDataResponseModel.getPage().intValue());
+        assertEquals(usersPerPage, listUserDataResponseModel.getPerPage().intValue());
+        assertEquals(totalNumberOfUsers, listUserDataResponseModel.getTotal().intValue());
+        assertEquals(totalPages, listUserDataResponseModel.getTotalPages().intValue());
         assertEquals(listUserDataResponseModel.getData().size(), 6);
+        assertEquals(listUserDataResponseModel.getAd().getCompany(), company);
+        assertEquals(listUserDataResponseModel.getAd().getUrl(), companyUrl);
+        assertEquals(listUserDataResponseModel.getAd().getText(), text);
     }
 
     @TmsLink(value = "")
@@ -41,11 +47,14 @@ public class UsersDataTest {
                         .shouldHave(statusCode(200))
                         .responseAs(UserData.class);
 
-        assertEquals(userData.getData().getId(), 3);
+        assertEquals(userData.getData().getId().intValue(), 3);
         assertEquals(userData.getData().getFirstName(), "Emma");
         assertEquals(userData.getData().getLastName(), "Wong");
         assertEquals(userData.getData().getEmail(), "emma.wong@reqres.in");
         assertEquals(userData.getData().getAvatar(), "https://s3.amazonaws.com/uifaces/faces/twitter/olegpogodaev/128.jpg");
+        assertEquals(userData.getAd().getCompany(), company);
+        assertEquals(userData.getAd().getUrl(), companyUrl);
+        assertEquals(userData.getAd().getText(), text);
     }
 
     @TmsLink(value = "")

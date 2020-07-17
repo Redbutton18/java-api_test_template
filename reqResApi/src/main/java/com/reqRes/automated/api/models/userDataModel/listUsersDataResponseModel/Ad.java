@@ -14,20 +14,14 @@ import lombok.experimental.Accessors;
 @ToString
 @Accessors(chain = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class DataItem{
+public class Ad{
 
-    @JsonProperty("last_name")
-    private String lastName;
+    @JsonProperty("company")
+    private String company;
 
-    @JsonProperty("id")
-    private Integer id;
+    @JsonProperty("text")
+    private String text;
 
-    @JsonProperty("avatar")
-    private String avatar;
-
-    @JsonProperty("first_name")
-    private String firstName;
-
-    @JsonProperty("email")
-    private String email;
+    @JsonProperty("url")
+    private String url;
 }

@@ -1,4 +1,4 @@
-package com.reqRes.automated.api.models.userDataModel.userDataResponseModel;
+package com.reqRes.automated.api.models.resourceDataModel.resourceDataResponseModel;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -14,11 +14,14 @@ import lombok.experimental.Accessors;
 @ToString
 @Accessors(chain = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class UserData {
+public class Ad{
 
-    @JsonProperty("ad")
-    private Ad ad;
+    @JsonProperty("company")
+    private String company;
 
-    @JsonProperty("data")
-    private Data data;
+    @JsonProperty("text")
+    private String text;
+
+    @JsonProperty("url")
+    private String url;
 }

@@ -16,6 +16,9 @@ import lombok.experimental.Accessors;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ResourceDataResponseModel {
 
-	@JsonProperty("data")
-	private Data data;
+    @JsonProperty("ad")
+    private Ad ad;
+
+    @JsonProperty("data")
+    private Data data;
 }
